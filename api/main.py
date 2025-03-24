@@ -58,10 +58,10 @@ def delete_one_order(order_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return orders.delete(db=db, order_id=order_id)
 
-#sandwiches
 @app.post("/sandwiches/", response_model=schemas.Sandwich, tags=["Sandwiches"])
 def create_sandwich(sandwich: schemas.SandwichCreate, db: Session = Depends(get_db)):
-    return sandwich.create(db=db, sandwich=sandwich)
+    return sandwiches.create(db=db, sandwich=sandwich)
+
 
 @app.get("/sandwiches/", response_model=list[schemas.Sandwich], tags=["Sandwiches"])
 def read_sandwiches(db: Session = Depends(get_db)):
